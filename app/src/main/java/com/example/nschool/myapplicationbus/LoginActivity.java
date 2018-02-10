@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 /**
  * Activity for user Login
  * if user already exist they can login after successful validation
