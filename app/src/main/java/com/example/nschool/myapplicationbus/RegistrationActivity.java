@@ -55,13 +55,13 @@ public class RegistrationActivity extends AppCompatActivity implements
         spinner.setAdapter(adapter);                                //Setting the ArrayAdapter data on the Spinner
         //onclick method to validate and if success navigate to next page
         appCompatButtonRegister.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
                 postDataToSQLite();                                //verify data from Database
             }
         });
     }
+    
     //method to validate input and if validation success then insert data into database
     private void postDataToSQLite() {
         //to check whether the input is empty or not if empty show error messages
@@ -104,7 +104,8 @@ public class RegistrationActivity extends AppCompatActivity implements
             startActivity(i);
         }
     }
-    /**
+    
+     /**
      * This method is to empty all input fields
      */
     private void emptyInputEditText() {
@@ -113,7 +114,8 @@ public class RegistrationActivity extends AppCompatActivity implements
         textInputEditTextPassword.setText("");
         textInputEditTextPhone.setText("");
     }
-    /**
+    
+     /**
      * This method is to intialize all the widgets objects
      */
     private void initObjects() {
@@ -132,6 +134,7 @@ public class RegistrationActivity extends AppCompatActivity implements
         databaseHelper = new DbHelper(activity);
         user = new User();
     }
+   
     /**
      * This method is to select country from country list spinner and store the value in country_name
      */
@@ -139,6 +142,7 @@ public class RegistrationActivity extends AppCompatActivity implements
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         country_name = country[position];
     }
+  
     /**
      *This method is to show default country name when nothing selected
        */
