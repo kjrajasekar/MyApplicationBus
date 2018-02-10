@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My ApplicationBus</string>
+    <string name="error_message_name">Invalid name</string>
+    <string name="error_message_email">Invalid email</string>
+    <string name="error_message_password">Invalid Password</string>
+    <string name="error_message_phone">Invalid Phone Number</string>
+    <!--<string name="error_message_name_empty">Field is empty</string>-->
+    <!--<string name="error_message_email_empty">Field is empty</string>-->
+    <!--<string name="error_message_password_empty">Field is empty</string>-->
+    <!--<string name="error_message_phone_empty">Field is empty</string>-->
+</resources>
