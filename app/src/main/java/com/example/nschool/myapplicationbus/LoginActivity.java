@@ -104,13 +104,10 @@ public class LoginActivity extends AppCompatActivity {
     private void initObjects() {
         textInputLayoutEmail = (TextInputLayout) findViewById(R.id.textInputLayoutEmail);
         textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPass);
-
         textInputEditTextEmail = (TextInputEditText) findViewById(R.id.logemail);
         textInputEditTextPassword = (TextInputEditText) findViewById(R.id.logpassword);
-
         appCompatButtonLogin = (AppCompatButton) findViewById(R.id.btnLogin);
         appCompatButtonLoginfb = (AppCompatButton) findViewById(R.id.btnLogin_fb);
-
         txtRegister = (TextView) findViewById(R.id.textRegister);
         databaseHelper = new DbHelper(activity);
         user = new User();
