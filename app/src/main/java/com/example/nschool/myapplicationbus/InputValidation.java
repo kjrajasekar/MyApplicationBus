@@ -13,9 +13,9 @@ import android.view.inputmethod.InputMethodManager;
  */
 
 public class InputValidation {
-    private Context context;            //context for get application context
+    private Context context;            //context for current activity
 
-     public InputValidation(Context context) {
+     public InputValidation(Context context) {      //constructor 
         this.context = context;
     }
 
