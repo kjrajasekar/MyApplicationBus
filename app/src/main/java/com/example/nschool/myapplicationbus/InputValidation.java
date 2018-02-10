@@ -100,7 +100,7 @@ public class InputValidation {
     public boolean isInputEditTextPassFilled(TextInputEditText textInputEditTextPassword, TextInputLayout textInputLayoutPassword, String message) {
         String value = textInputEditTextPassword.getText().toString().trim();
         if (value.isEmpty()) {                            //to check password field is empty or not
-            textInputLayoutPassword.setError(message);      // if not then se error message
+            textInputLayoutPassword.setError(message);      // if not then set error message
             hideKeyboardFrom(textInputEditTextPassword);
             return false;
         } else {
