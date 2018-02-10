@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Ravi on 5/4/2017.
+ * Created by  Nschool on 2/9/2018.
  */
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -30,18 +30,14 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String COLUMN_USER_PASSWORD = "user_password";
 
     // create table sql query
-    private String CREATE_USER_TABLE = "CREATE TABLE "+TABLE_USER+"("
-            +COLUMN_USER_ID+" INTEGER,"+COLUMN_USER_NAME +" TEXT,"
-            +COLUMN_USER_EMAIL+" TEXT PRIMARY KEY,"+COLUMN_USER_PASSWORD+" TEXT" + ")";
+    private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
+            + COLUMN_USER_ID + " INTEGER," + COLUMN_USER_NAME + " TEXT,"
+            + COLUMN_USER_EMAIL + " TEXT PRIMARY KEY," + COLUMN_USER_PASSWORD + " TEXT" + ")";
 
     // drop table sql query
     private String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
 
-    /**
-     * Constructor
-     *
-     * @param context
-     */
+
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -51,52 +47,34 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_USER_TABLE);
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         //Drop User Table if exist
         db.execSQL(DROP_USER_TABLE);
-
         // Create tables again
         onCreate(db);
-
     }
 
-    /**
-     * This method is to create user record
-     *
-     * @param user
-     */
+    // This method is to create user record
     public void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(COLUMN_USER_NAME, user.getName());
         values.put(COLUMN_USER_EMAIL, user.getEmail());
         values.put(COLUMN_USER_PASSWORD, user.getPassword());
-
-        // Inserting Row
+        // Inserting data
         db.insert(TABLE_USER, null, values);
         db.close();
     }
 
     /**
      * This method is to fetch all user and return the list of user records
-     *
-     * @return list
      */
     public List<User> getAllUser() {
-        // array of columns to fetch
-        String[] columns = {
-                COLUMN_USER_ID,
-                COLUMN_USER_EMAIL,
-                COLUMN_USER_NAME,
-                COLUMN_USER_PASSWORD
-        };
-        // sorting orders
-        String sortOrder =
-                COLUMN_USER_NAME + " ASC";
+        // array of columns to fetch data
+        String[] columns = {  COLUMN_USER_ID, COLUMN_USER_EMAIL,COLUMN_USER_NAME,COLUMN_USER_PASSWORD };
+        // sorting the input in ascending order
+        String sortOrder = COLUMN_USER_NAME + " ASC";
         List<User> userList = new ArrayList<User>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -115,7 +93,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 null,       //filter by row groups
                 sortOrder); //The sort order
 
-
         // Traversing through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
@@ -130,13 +107,12 @@ public class DbHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-
         // return user list
         return userList;
     }
 
     /**
-    /**
+     * /**
      * This method to update user record
      *
      * @param user
@@ -246,15 +222,13 @@ public class DbHelper extends SQLiteOpenHelper {
                 null);                      //The sort order
 
         int cursorCount = cursor.getCount();
-
         cursor.close();
         db.close();
         if (cursorCount > 0) {
             return true;
+        } else if (cursor == null) {
+            return false;
         }
-        else if(cursor==null)
-        {return false;}
-
         return false;
     }
 }

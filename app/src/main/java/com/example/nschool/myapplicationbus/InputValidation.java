@@ -13,24 +13,19 @@ import android.view.inputmethod.InputMethodManager;
  */
 
 public class InputValidation {
-    private Context context;
+    private Context context;            //context for get application context
 
-    /**
-     * constructor
-     *
-     * @param context
-     */
-    public InputValidation(Context context) {
+     public InputValidation(Context context) {
         this.context = context;
     }
 
     /**
-     * method to check InputEditText filled .
-     *
+     * method to check InputEditText filled or not.
+     * if not reurn false and set error message to that input edit text
      * @param textInputEditText
      * @param textInputLayout
-     * @param message
-     * @return
+     * @param message to show error message
+     * @return true/false
      */
     public boolean isInputEditTextFilled(TextInputEditText textInputEditText, TextInputLayout textInputLayout, String message) {
         String value = textInputEditText.getText().toString().trim();
@@ -41,18 +36,16 @@ public class InputValidation {
         } else {
             textInputLayout.setErrorEnabled(false);
         }
-
         return true;
     }
 
-
     /**
      * method to check InputEditText has valid email .
-     *
-     * @param textInputEditText
-     * @param textInputLayout
-     * @param message
-     * @return
+     * if not reurn false and set error message to email field
+     * @param textInputEditText is field of email
+     * @param textInputLayout is layout of email
+     * @param message contains value "invalid email"
+     * @return true/false
      */
     public boolean isInputEditTextEmail(TextInputEditText textInputEditText, TextInputLayout textInputLayout, String message) {
         String value = textInputEditText.getText().toString().trim();
@@ -66,11 +59,18 @@ public class InputValidation {
         return true;
     }
 
+    /**
+     * method to check InputEditText has valid phone number .
+     * if not reurn false and set error message to phone number field
+     * @param textInputEditText1 is field of phone number
+     * @param textInputLayout is layout of phone number
+     * @param message contains value "invalid phone number"
+     * @return true/false
+     */
     public boolean isInputEditTextMatches(TextInputEditText textInputEditText1, TextInputLayout textInputLayout, String message) {
         String value1 = textInputEditText1.getText().toString().trim();
-
-        if (value1.length()<10) {
-            textInputLayout.setError(message);
+        if (value1.length()<10) {                   //to check phone number length is 10 or not
+            textInputLayout.setError(message);     // phone < 10 means set error message
             hideKeyboardFrom(textInputEditText1);
             return false;
         } else {
@@ -82,23 +82,30 @@ public class InputValidation {
     /**
      * method to Hide keyboard
      *
-     * @param view
+     * @param view is object of Parent view from activity
      */
     private void hideKeyboardFrom(View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
-    public boolean isInputEditTextPassFilled(TextInputEditText textInputEditTextPassword, TextInputLayout textInputLayoutPassword, String string) {
+    /**
+     * method to check InputEditText has valid phone number .
+     * if not reurn false and set error message to phone number field
+     * @param textInputEditTextPassword is field of password
+     * @param textInputLayoutPassword   is layout of password
+     * @param message contains value "invalid password"
+     * @return true/false
+     */
+    public boolean isInputEditTextPassFilled(TextInputEditText textInputEditTextPassword, TextInputLayout textInputLayoutPassword, String message) {
         String value = textInputEditTextPassword.getText().toString().trim();
-        if (value.isEmpty()) {
-            textInputLayoutPassword.setError(string);
+        if (value.isEmpty()) {                            //to check password field is empty or not
+            textInputLayoutPassword.setError(message);      // if not then se error message
             hideKeyboardFrom(textInputEditTextPassword);
             return false;
         } else {
             textInputLayoutPassword.setErrorEnabled(false);
         }
-
         return true;
     }
 }
